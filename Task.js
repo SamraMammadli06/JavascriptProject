@@ -1,3 +1,7 @@
+const uid = function(){
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
+
 export class Task{
     #id;
     #tittle;
@@ -8,7 +12,7 @@ export class Task{
         if(tittle==='' || description===''){
             return;
         }
-        this.#id = Math.random().toString(16).slice(2);
+        this.#id = uid();
         this.#tittle = tittle;
         this.#description = description;
         this.#status = false;
