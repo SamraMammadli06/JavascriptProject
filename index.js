@@ -1,5 +1,6 @@
 import { Tasks } from "./Tasks.js";
 import { Task } from "./Task.js";
+import { TasksKey } from "./globals.js";
 
 
 const input = document.querySelector('input');
@@ -11,5 +12,8 @@ const tasks = new Tasks();
 button.addEventListener('click',()=>{
     let task = new Task(input.value,textarea.value);
     tasks.AddTask(task);
-    console.log(tasks.tasks);
+    const taskArray = tasks.Gettasks();
+    localStorage.setItem(TasksKey,JSON.stringify(taskArray));
+    input.value ='';
+    textarea.value ='';
 })

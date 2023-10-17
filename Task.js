@@ -10,7 +10,7 @@ export class Task{
     #status;
     constructor (tittle,description) {
         if(tittle==='' || description===''){
-            return;
+            throw new Error("Can't be empty!");
         }
         this.#id = uid();
         this.#tittle = tittle;
@@ -46,5 +46,9 @@ export class Task{
     }
     set description(description){
         this.#description = description;
+    }
+
+    toJSON() {
+        return {id: this.#id ,title: this.#tittle, description: this.#description, date: this.#date, status :this.#status };
     }
 }
