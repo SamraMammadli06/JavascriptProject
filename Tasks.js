@@ -7,6 +7,7 @@ export class Tasks{
     }
     AddTask(task){
         if(task instanceof Task===false){
+            console.log('wrong')
             return;
         }
         this.#tasks.push(task);

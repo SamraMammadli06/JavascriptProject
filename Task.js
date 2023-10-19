@@ -4,16 +4,16 @@ const uid = function(){
 
 export class Task{
     #id;
-    #tittle;
+    #title;
     #description;
     #date;
     #status;
-    constructor (tittle,description) {
-        if(tittle==='' || description===''){
+    constructor (title,description) {
+        if(title==='' || description===''){
             throw new Error("Can't be empty!");
         }
         this.#id = uid();
-        this.#tittle = tittle;
+        this.#title = title;
         this.#description = description;
         this.#status = false;
         let currentdate = new Date();
@@ -29,7 +29,7 @@ export class Task{
         return this.#id;
     }
     get title(){
-        return this.#tittle;
+        return this.#title;
     }
     get description(){
         return this.#description;
@@ -41,14 +41,21 @@ export class Task{
         return this.#status;
     }
 
-    set title(tittle){
-        this.#tittle = tittle;
+    set title(title){
+        this.#title = title;
     }
     set description(description){
         this.#description = description;
     }
 
     toJSON() {
-        return {id: this.#id ,title: this.#tittle, description: this.#description, date: this.#date, status :this.#status };
+        return {id: this.#id ,title: this.#title, description: this.#description, date: this.#date, status :this.#status };
+    }
+    fromJson(json){
+        this.#id = json.id;
+        this.#date = json.date;
+        this.#description = json.description;
+        this.#title = json.title;
+        this.#status = json.status;
     }
 }
