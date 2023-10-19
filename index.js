@@ -7,7 +7,8 @@ const input = document.querySelector('input');
 const textarea = document.querySelector('textarea');
 const button = document.querySelector('form button');
 const tasks = new Tasks();
-console.log(tasks)
+
+
 function CreateTaskList(){
     const taskArray = tasks.Gettasks();
     const checklist = document.createElement('input');
