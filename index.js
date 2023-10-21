@@ -23,7 +23,6 @@ function CreateTaskList(){
     document.body.append(label);
     document.body.append(br);
 }
-
 function CreateChecklists(tasks_items){
     tasks_items.forEach(element => {
         const checklist = document.createElement('input');
@@ -39,6 +38,7 @@ function CreateChecklists(tasks_items){
 
     });
 }
+
 
 function UploadLocalStorage(){
     const items = localStorage.getItem(TasksKey);
@@ -95,7 +95,12 @@ sortRadioArr.forEach(e=>{
             CreateChecklists(t);
         }
         else{
-           UploadLocalStorage();
+            const items = localStorage.getItem(TasksKey);
+            if(items===null){
+                return;
+            }
+            const task_items = JSON.parse(items);
+            CreateChecklists(task_items)
         }
     })
 })
