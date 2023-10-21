@@ -6,8 +6,10 @@ import { TasksKey } from "./globals.js";
 const input = document.querySelector('input');
 const textarea = document.querySelector('textarea');
 const button = document.querySelector('form button');
-const sortRadio = document.querySelectorAll('div[class=sort] input[type=radio]')
-const tasks = new Tasks();
+const sortRadio = document.querySelectorAll('div[class=sort] input[type=radio]');
+const filtrRadio = document.querySelectorAll('div[class=filtr] input[type=radio]');
+
+let tasks = new Tasks();
 
 
 function CreateTaskList(){
@@ -23,6 +25,7 @@ function CreateTaskList(){
     document.body.append(label);
     document.body.append(br);
 }
+
 function CreateChecklists(tasks_items){
     tasks_items.forEach(element => {
         const checklist = document.createElement('input');
@@ -79,6 +82,7 @@ button.addEventListener('click',()=>{
     textarea.value ='';
 
 })
+
 const sortRadioArr = [...sortRadio];
 sortRadioArr.forEach(e=>{
     e.addEventListener('click',element=>{
@@ -92,6 +96,28 @@ sortRadioArr.forEach(e=>{
         }
         else if(sortRadioArr[1]===e){
             const t =tasks.SortByTitle();
+            CreateChecklists(t);
+        }
+        else{
+            const t =tasks.NotSorted();
+            CreateChecklists(t);
+        }
+    })
+})
+
+const filtrRadioArr = [...filtrRadio];
+filtrRadioArr.forEach(e=>{
+    e.addEventListener('click',element=>{
+        const getCheckboxes = document.getElementsByClassName('Taskbox');
+        [...getCheckboxes].forEach(el=>{
+            el.remove();
+        })
+        if(filtrRadioArr[1]===e){
+           const t = tasks.FiltDone();
+            CreateChecklists(t);
+        }
+        else if(filtrRadioArr[2]===e){
+            const t =tasks.FiltNotDone();
             CreateChecklists(t);
         }
         else{
