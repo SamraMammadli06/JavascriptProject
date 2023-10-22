@@ -20,6 +20,10 @@ function CreateTaskList(new_task){
     const button = document.createElement('button');
     button.textContent='DELETE';
     button.className='deleteButton';
+    const a = document.createElement('a');
+    a.textContent='Edit';
+    a.className='edit';
+    a.href ="/EditForm/edit.html?id="+new_task.id;
     const br = document.createElement('br');
     label.textContent = taskArray[taskArray.length - 1].title + ' ';
     checklist.type = 'checkbox';
@@ -27,17 +31,16 @@ function CreateTaskList(new_task){
     br.className='Taskbox';
     label.append(checklist);
     document.body.append(label);
+    document.body.append(a);
     document.body.append(button);
     document.body.append(br);
-    console.log(tasks.Gettasks());
     button.addEventListener('click',e=>{
         label.remove();
         button.remove();
         br.remove();
+        a.remove();
         const taskIndex = tasks.Gettasks().findIndex(task=>task===new_task);
-        console.log(taskIndex);
         tasks.Gettasks().splice(taskIndex,1);
-        console.log(tasks);
         localStorage.setItem(TasksKey,JSON.stringify(tasks.Gettasks()));
     })
     checklist.addEventListener('change',e=>{
@@ -49,8 +52,8 @@ function CreateTaskList(new_task){
         }
         localStorage.setItem(TasksKey,JSON.stringify(tasks.Gettasks()));
     })
+    
 }
-
 
 function CreateChecklists(tasks_items){
     tasks_items.forEach(element => {
@@ -59,6 +62,10 @@ function CreateChecklists(tasks_items){
         const button = document.createElement('button');
         button.textContent='DELETE';
         button.className='deleteButton';
+        const a = document.createElement('a');
+        a.textContent='Edit';
+        a.className='edit';
+        a.href ="/EditForm/edit.html?id="+element.id;
         const br = document.createElement('br');
         label.textContent = element.title + ' ';
         checklist.type = 'checkbox';
@@ -66,6 +73,7 @@ function CreateChecklists(tasks_items){
         label.className = 'Taskbox';
         label.append(checklist);
         document.body.append(label);
+        document.body.append(a);
         document.body.append(button);
         document.body.append(br);  
         if(element.status===true){
@@ -74,11 +82,10 @@ function CreateChecklists(tasks_items){
         button.addEventListener('click',e=>{
             label.remove();
             button.remove();
+            a.remove();
             br.remove();
             const taskIndex = tasks.Gettasks().findIndex(task=>task===element);
-            console.log(taskIndex);
             tasks.Gettasks().splice(taskIndex,1);
-            console.log(tasks);
             localStorage.setItem(TasksKey,JSON.stringify(tasks.Gettasks()));
         })
         checklist.addEventListener('change',e=>{
@@ -111,6 +118,9 @@ function UploadLocalStorage(){
         const button = document.createElement('button');
         button.textContent='DELETE';
         button.className='deleteButton';
+        const a = document.createElement('a');
+        a.textContent='Edit';
+        a.className='edit';
         const br = document.createElement('br');
         label.textContent = element.title + ' ';
         checklist.type = 'checkbox';
@@ -121,14 +131,15 @@ function UploadLocalStorage(){
         label.className = 'Taskbox';
         label.append(checklist);
         document.body.append(label);
+        document.body.append(a);
         document.body.append(button);
         document.body.append(br);
         button.addEventListener('click',e=>{
             label.remove();
             button.remove();
+            a.remove();
             br.remove();
             const taskIndex = tasks.Gettasks().findIndex(task=>task===element);
-            console.log(taskIndex);
             tasks.Gettasks().splice(taskIndex,1);
             localStorage.setItem(TasksKey,JSON.stringify(tasks.Gettasks()));
         })
@@ -143,6 +154,7 @@ function UploadLocalStorage(){
         })
     });
 }
+
 
 button.addEventListener('click',()=>{
     let task = new Task(input.value,textarea.value);
@@ -177,7 +189,6 @@ sortRadioArr.forEach(e=>{
            tasks.SetTasks(t);
         }
         else if(sortRadioArr[1]===e){
-            console.log(tasks);
             const t =tasks.SortByTitle();
             CreateChecklists(t);
             tasks.SetTasks(t);

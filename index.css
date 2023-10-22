@@ -9,3 +9,7 @@ textarea {
 form{
     padding: 20px;
 }
+a{
+    background-color: whitesmoke;
+    border: gray 1px solid;
+}
