@@ -32,10 +32,12 @@ label2.textContent = 'Description';
 label2.append(des);
 
 
+const button = document.createElement('button');
 const a = document.createElement('a');
-a.textContent='SAVE';
+a.textContent='Return';
 a.href='../index.html';
-a.addEventListener('click',e=>{
+button.textContent='SAVE\t';
+button.addEventListener('click',e=>{
     task.title= title.value;
     task.description = des.value;
     [...tasks].forEach(element => {
@@ -45,10 +47,10 @@ a.addEventListener('click',e=>{
     });
     localStorage.setItem(TasksKey,JSON.stringify(tasks));
 
-    title='';
-    des='';
 })
 document.body.append(label1);
 document.body.append(label2);
+document.body.append(button);
 document.body.append(a);
+
 

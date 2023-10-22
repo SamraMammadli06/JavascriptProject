@@ -102,7 +102,6 @@ function CreateChecklists(tasks_items){
     });
 }
 
-
 function UploadLocalStorage(){
     const items = localStorage.getItem(TasksKey);
     if(items===null){
