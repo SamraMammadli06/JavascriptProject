@@ -121,6 +121,7 @@ function UploadLocalStorage(){
         const a = document.createElement('a');
         a.textContent='Edit';
         a.className='edit';
+        a.href ="/EditForm/edit.html?id="+element.id;
         const br = document.createElement('br');
         label.textContent = element.title + ' ';
         checklist.type = 'checkbox';

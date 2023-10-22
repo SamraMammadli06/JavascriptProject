@@ -9,7 +9,11 @@ const [key, value] = [...urlSearchParams][0];
 
 const tasks = JSON.parse(localStorage.getItem(TasksKey));
 
+
 const task = tasks.find(task => task[key] === value);
+if(task===undefined){
+    throw new Error("Can't find task with this id");
+}
 
 console.log(task);
 
