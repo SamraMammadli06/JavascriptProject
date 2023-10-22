@@ -2,8 +2,11 @@ import { Task } from "./Task.js";
 
 export class Tasks{
     #tasks =[];
-     Gettasks(){
+    Gettasks(){
         return this.#tasks;
+    }
+    SetTasks(tasks){
+        this.#tasks=tasks;
     }
     AddTask(task){
         if(task instanceof Task===false){
@@ -54,7 +57,7 @@ export class Tasks{
             return 0;
         });
     }
-
+   
     FiltDone(){
         return this.#tasks.filter(t=>t.status===true);
     }

@@ -41,6 +41,9 @@ export class Task{
         return this.#status;
     }
 
+    set status(status){
+        this.#status=status;
+    }
     set title(title){
         this.#title = title;
     }
