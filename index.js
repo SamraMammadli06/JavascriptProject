@@ -16,7 +16,7 @@ let tasks = new Tasks();
 function CreateTaskList(new_task){
     const taskArray = tasks.Gettasks();
     const checklist = document.createElement('input');
-    const label = document.createElement('label');
+    const label = document.createElement('a');
     const button = document.createElement('button');
     button.textContent='DELETE';
     button.className='deleteButton';
@@ -28,6 +28,7 @@ function CreateTaskList(new_task){
     label.textContent = taskArray[taskArray.length - 1].title + ' ';
     checklist.type = 'checkbox';
     label.className = 'Taskbox';
+    label.href = '/InfoForm/info.html?id='+new_task.id;
     br.className='Taskbox';
     label.append(checklist);
     document.body.append(label);
@@ -58,7 +59,7 @@ function CreateTaskList(new_task){
 function CreateChecklists(tasks_items){
     tasks_items.forEach(element => {
         const checklist = document.createElement('input');
-        const label = document.createElement('label');
+        const label = document.createElement('a');
         const button = document.createElement('button');
         button.textContent='DELETE';
         button.className='deleteButton';
@@ -69,6 +70,7 @@ function CreateChecklists(tasks_items){
         const br = document.createElement('br');
         label.textContent = element.title + ' ';
         checklist.type = 'checkbox';
+        label.href = '/InfoForm/info.html?id='+element.id;
         br.className='Taskbox';
         label.className = 'Taskbox';
         label.append(checklist);
@@ -114,7 +116,7 @@ function UploadLocalStorage(){
     })
     tasks.Gettasks().forEach(element => {
         const checklist = document.createElement('input');
-        const label = document.createElement('label');
+        const label = document.createElement('a');
         const button = document.createElement('button');
         button.textContent='DELETE';
         button.className='deleteButton';
@@ -124,6 +126,7 @@ function UploadLocalStorage(){
         a.href ="/EditForm/edit.html?id="+element.id;
         const br = document.createElement('br');
         label.textContent = element.title + ' ';
+        label.href = '/InfoForm/info.html?id='+element.id;
         checklist.type = 'checkbox';
         br.className='Taskbox';
         if(element.status===true){
@@ -176,6 +179,8 @@ sortRadioArr.forEach(e=>{
     e.addEventListener('click',element=>{
         const getCheckboxes = document.getElementsByClassName('Taskbox');
         const getButtons = document.getElementsByClassName('deleteButton');
+        const getEditButtons = document.getElementsByClassName('edit');
+
         [...getCheckboxes].forEach(el=>{
             el.remove();
         });
@@ -183,7 +188,10 @@ sortRadioArr.forEach(e=>{
         [...getButtons].forEach(el=>{
             el.remove();
         });
-
+        
+        [...getEditButtons].forEach(el=>{
+            el.remove();
+        });
         if(sortRadioArr[0]===e){
            const t = tasks.SortByDate();
            CreateChecklists(t);
@@ -207,10 +215,14 @@ filtrRadioArr.forEach(e=>{
     e.addEventListener('click',element=>{
         const getCheckboxes = document.getElementsByClassName('Taskbox');
         const getButtons = document.getElementsByClassName('deleteButton');
+        const getEditButtons = document.getElementsByClassName('edit');
         [...getCheckboxes].forEach(el=>{
             el.remove();
         });
         [...getButtons].forEach(el=>{
+            el.remove();
+        });
+        [...getEditButtons].forEach(el=>{
             el.remove();
         });
         if(filtrRadioArr[1]===e){

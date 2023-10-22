@@ -13,3 +13,9 @@ a{
     background-color: whitesmoke;
     border: gray 1px solid;
 }
+a.Taskbox{
+    text-decoration: none;
+    background-color: white;
+    border: white 1px solid;
+    color: black;
+}
