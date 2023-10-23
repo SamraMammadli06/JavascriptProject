@@ -1,4 +1,4 @@
-import {TasksKey} from '../globals.js'
+import {TasksKey, RegexDes, RegexTittle} from '../globals.js'
 
 const url = new URL(location);
 const urlSearchParams = new URLSearchParams(url.search);
@@ -38,6 +38,16 @@ a.textContent='Return';
 a.href='../index.html';
 button.textContent='SAVE\t';
 button.addEventListener('click',e=>{
+    if(title.value==='' || des.value===''){
+        title.value=task.title;
+        des.value=task.description;
+        throw new Error("Can't be empty!");
+    }
+    if(RegexTittle(title.value)===1 || RegexDes(des.value)===1){
+        title.value=task.title;
+        des.value=task.description;
+        throw new Error('Wrong Format');
+    }
     task.title= title.value;
     task.description = des.value;
     [...tasks].forEach(element => {

@@ -1,3 +1,5 @@
+import { RegexDes, RegexTittle } from "./globals.js";
+
 const uid = function(){
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
@@ -8,6 +10,7 @@ export class Task{
     #description;
     #date;
     #status;
+    
     constructor (title,description) {
         if(title==='' || description===''){
             throw new Error("Can't be empty!");
@@ -71,22 +74,3 @@ export class Task{
     }
 }
 
-function RegexTittle(str){
-    var p1 = /^(.+\s){1,16}.+$/;
-    var p2 = /^(?![\d\s]+$)(?!\s)(?:(?! {2,}).)+[^ ]$/;
-
-    if (p1.test(str) && p2.test(str)) {
-        
-        return 0;
-    } 
-    return 1;
-}
-
-function RegexDes(str){
-    var p1 = /^(.+\s){1,16}.+$/;
-    if (p1.test(str)) {
-        
-        return 0;
-    } 
-    return 1;
-}

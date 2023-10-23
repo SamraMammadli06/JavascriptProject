@@ -109,7 +109,7 @@ function UploadLocalStorage(){
     }
     const task_items = JSON.parse(items);
     task_items.forEach(e=>{
-        const task = new Task();
+        const task = new Task(e.title,e.description);
         task.fromJson(e);
         tasks.AddTask(task);
     })
