@@ -15,7 +15,7 @@ export class Task{
         if(title==='' || description===''){
             throw new Error("Can't be empty!");
         }
-        if(RegexTittle(title)===1 || RegexDes(description)===1){
+        if(RegexTittle(title)===1 || RegexDes(description,title)===1){
             throw new Error('Wrong Format');
         }
         this.#id = uid();

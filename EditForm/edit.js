@@ -43,7 +43,7 @@ button.addEventListener('click',e=>{
         des.value=task.description;
         throw new Error("Can't be empty!");
     }
-    if(RegexTittle(title.value)===1 || RegexDes(des.value)===1){
+    if(RegexTittle(title.value)===1 || RegexDes(des.value,title.value)===1){
         title.value=task.title;
         des.value=task.description;
         throw new Error('Wrong Format');

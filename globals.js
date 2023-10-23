@@ -2,7 +2,7 @@ export const TasksKey = 'Tasks';
 
 export function RegexTittle(str){
     var p1 = /^(.+\s){1,16}.+$/;
-    var p2 = /^(?![\d\s]+$)(?!\s)(?:(?! {2,}).)+[^ ]$/;
+    var p2 = /^(?![\d\s]+$)(?!\s)[^ ]$/;
 
     if (p1.test(str) && p2.test(str)) {
         
@@ -11,11 +11,10 @@ export function RegexTittle(str){
     return 1;
 }
 
-export function RegexDes(str){
-    var p1 = /^(.+\s){1,16}.+$/;
-    if (p1.test(str)) {
-        
+export function RegexDes(str,title){
+    let trimmedDes = str.trim();
+    if(trimmedDes!==title && trimmedDes!==''){
         return 0;
-    } 
+    }
     return 1;
 }

@@ -12,7 +12,6 @@ let labels = document.querySelectorAll('label[class=Taskbox]');
 let checkboxes = document.querySelectorAll('input[type=checkbox]');
 let tasks = new Tasks();
 
-
 function CreateTaskList(new_task){
     const taskArray = tasks.Gettasks();
     const checklist = document.createElement('input');
